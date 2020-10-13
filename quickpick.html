@@ -1,0 +1,131 @@
+<!--
+  Miguel Larena
+  Oct. 12, 2020
+  COMP20
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework 5B</title>
+
+  <style media="screen">
+    h1, h2 {
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+      text-align: center;
+    }
+    p {
+      font-family: "Lucida Console", Courier, monospace;
+      text-align: center;
+      margin: 0;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function runQuickPick() {
+      var arr_qp = [];
+      for (var i = 0; i < 5; i++) {
+        arr_qp.push(Math.floor(Math.random() * 48) + 1);
+      }
+      for (var j = 0; j < 5; j++) {
+        var quickpick = document.getElementsByTagName("p")[0];
+        var text = document.createTextNode(arr_qp[j] + " ");
+        quickpick.appendChild(text);
+      }
+      var qplucky = (Math.floor(Math.random() * 18) + 1);
+      document.getElementsByTagName("p")[1].innerHTML =
+      "Today's Lucky Ball number is " + qplucky;
+
+      var upick = prompt("Enter winning numbers separated by a space (1 - 48)");
+      var ulucky = prompt ("Enter a Lucky Ball number (1 - 18)");
+      upick = upick.split(/(\s+)/);
+      var arr_u = [];
+      for (var k = 0; k < upick.length; k++) {
+        if (upick[k] != " ") {
+          arr_u.push(upick[k]);
+        }
+      }
+      for (var l = 0; l < 5; l++) {
+        var winning = document.getElementsByTagName("p")[2];
+        var text = document.createTextNode(arr_u[l] + " ");
+        winning.appendChild(text);
+      }
+      document.getElementsByTagName("p")[3].innerHTML =
+      "Your Lucky Ball number is " + ulucky;
+
+      var count = 0;
+      for (var m = 0; m < 5; m++) {
+        if (arr_u[m] == arr_qp[m]) {
+          ++count;
+        }
+      }
+      if (ulucky == qplucky) {
+        if (count == 0) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $4";
+        }
+        if (count == 1) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $6";
+        }
+        if (count == 2) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $25";
+        }
+        if (count == 3) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $150";
+        }
+        if (count == 4) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $5,000";
+        }
+        if (count == 5) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches + the lucky ball! You win!" +
+          " Your payout is $7,000 a WEEK for LIFE";
+        }
+      } else {
+        if (count == 0 || count == 1) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches. Sorry!";
+        }
+        if (count == 2) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches! You win! Your payout is $3";
+        }
+        if (count == 3) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches! You win! Your payout is $20";
+        }
+        if (count == 4) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You had " + count + " matches! You win! Your payout is $200";
+        }
+        if (count == 5) {
+          document.getElementsByTagName("p")[4].innerHTML =
+          "You win! Your payout is $25,000 a YEAR for LIFE";
+        }
+      }
+  }
+  </script>
+</head>
+
+<header>
+  <h1>Quick Pick!</h1>
+</header>
+
+<body onload = "runQuickPick()">
+  <p>Today's Quick Pick numbers are: </p>
+  <p></p>
+  <p>Your winning numbers are: </p>
+  <p></p>
+  <p></p>
+</body>
+
+</html>
