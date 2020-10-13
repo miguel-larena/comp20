@@ -1,0 +1,71 @@
+<!--
+  Miguel Larena
+  Oct. 12, 2020
+  COMP20
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework 5A</title>
+  <style media="screen">
+    h1, h2 {
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+      text-align: center;
+    }
+    p {
+      font-family: "Lucida Console", Courier, monospace;
+      text-align: center;
+      margin: 0;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function takeOrder(){
+      var hotdogs = prompt("How many hotdogs?", "1");
+      var fries = prompt("How many fries?", "1");
+      var drinks = prompt("How many drinks?", "1");
+
+      document.getElementsByTagName("p")[0].innerHTML =
+      hotdogs + " hotdogs: $3.25 each = $" + (hotdogs * 3.25).toFixed(2);
+      document.getElementsByTagName("p")[1].innerHTML =
+      fries + " fries: $2.00 each = $" + (fries * 2.00).toFixed(2);
+      document.getElementsByTagName("p")[2].innerHTML =
+      drinks + " drinks: $1.50 = $" + (drinks * 1.50).toFixed(2);
+
+      var subtotal = (+(drinks * 1.50).toFixed(2)) +
+                     (+(fries * 2.00).toFixed(2)) +
+                     (+(hotdogs * 3.25).toFixed(2));
+
+      if (subtotal >= 20) {
+        document.getElementsByTagName("p")[3].innerHTML =
+        "You qualified for our 10% discount!"
+        subtotal *= .9;
+      }
+
+      document.getElementsByTagName("p")[4].innerHTML =
+      "Subtotal: $" + subtotal.toFixed(2);
+      document.getElementsByTagName("p")[5].innerHTML =
+      "MA Meals Tax: $" + (subtotal * .0625).toFixed(2);
+      document.getElementsByTagName("p")[6].innerHTML =
+      "Total: $" + (subtotal * 1.0625).toFixed(2);
+    }
+  </script>
+</head>
+
+<header>
+  <h1>Welcome to Joe's Hotdogs!</h1>
+</header>
+
+<body onload = "takeOrder()">
+  <h2>Your Order</h2>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+</body>
+
+</html>
