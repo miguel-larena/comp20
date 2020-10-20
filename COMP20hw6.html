@@ -1,0 +1,112 @@
+<!--
+  Miguel Larena
+  Oct. 19, 2020
+  COMP20
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework 6</title>
+
+  <style media="screen">
+    h1, h2 {
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+      text-align: center;
+    }
+    p, div {
+      font-family: "Lucida Console", Courier, monospace;
+      text-align: center;
+      margin: 1em;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function processNum() {
+      var input;
+
+      input = document.getElementById("num").value;
+      input = input.split(/(\s+)/);
+      var arr_input = [];
+      for (var i = 0; i < input.length; i++) {
+        if (input[i] != " ") {
+          arr_input.push(input[i]);
+        }
+      }
+      var arr_fact_1 = [];
+      var arr_fact_2 = [];
+      arr_fact_1 = getFactors(arr_input[0]);
+      arr_fact_2 = getFactors(arr_input[1]);
+      document.getElementsByTagName("p")[1].innerHTML = "The factors of " +
+      arr_input[0] + " are: ";
+      showArray(arr_fact_1, 1);
+      document.getElementsByTagName("p")[2].innerHTML = "The factors of " +
+      arr_input[1] + " are: ";
+      showArray(arr_fact_2, 2);
+      console.log(addArray(arr_fact_1));
+      console.log(addArray(arr_fact_2));
+      if ((addArray(arr_fact_1) == arr_input[1]) &&
+          (addArray(arr_fact_2) == arr_input[0])) {
+        document.getElementsByTagName("p")[3].innerHTML =
+        "The sum of " + arr_input[0] + "'s factors is " + addArray(arr_fact_1) +
+        ", while the sum of " + arr_input[1] + "'s factors is " +
+        addArray(arr_fact_2) + ". Therefore, " + arr_input[0] + " and " +
+        arr_input[1] + " are amicable numbers!";
+      } else {
+        document.getElementsByTagName("p")[3].innerHTML =
+        arr_input[0] + " and " + arr_input[1] + " are not amicable numbers!";
+      }
+    }
+
+    function getFactors(num) {
+      var factors = [];
+      for (var i = 1; i < num; i++) {
+        if (isFactor(num, i)) {
+          factors.push(+i);
+        }
+      }
+      return factors;
+    }
+
+    function isFactor(num, factor) {
+      if (num % factor == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function showArray(array, id) {
+      for (var i = 0; i < array.length; i++) {
+        var par = document.getElementsByTagName("p")[id];
+        var text = document.createTextNode(array[i] + " ");
+        par.appendChild(text);
+      }
+    }
+
+    function addArray(array) {
+      var sum = 0;
+      for (var i = 0; i < array.length; i++) {
+        sum += array[i];
+      }
+      return sum;
+    }
+  </script>
+</head>
+
+<header>
+  <h1>Amicable Numbers</h1>
+</header>
+
+<body>
+  <p>Type in a pair of positive integers seperated by a space!</p>
+  <div>
+    <input id="num">
+    <button type="button" onclick="processNum()">Submit</button>
+  </div>
+  <p></p>
+  <p></p>
+  <p></p>
+</body>
+
+</html>
