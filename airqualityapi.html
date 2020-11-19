@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<title>HW9 API Fun!</title>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	function getAirQuality() {
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "https://air-quality.p.rapidapi.com/current/airquality?lon=-73.8801&lat=40.7380",
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "air-quality.p.rapidapi.com",
+			"x-rapidapi-key": "45343a21f8msh1d56e7177ae79ffp1316adjsn2143a25542d2"
+		}
+	}
+
+	$.ajax(settings).done(function (response) {
+		document.getElementById("data").innerHTML = "NO2 Air Levels in " + response["city_name"] + ": " + response["data"]["no2"];
+	});
+ }
+	</script>
+</head>
+
+
+<body onload="getAirQuality()">
+	<h1>Air Quality Report</h1>
+	<div id="data">Loading...</div>
+	<p>I selected the Air Quality API by Weatherbit.</p>
+	<p>https://english.api.rakuten.net/weatherbit/api/air-quality/endpoints</p>
+	<p>I made a GET request to get the current air quality of a location. I
+		specified the longitude and latitude to match the location of Elmhurst which
+		is in Queens, New York. I wanted my call to run asynchronously,
+	 	and I had to enable crossDomain to allow for proper retrieval. I also
+	 	specified the API host URL and the key which validates my request.</p>
+	<p>This API would be very useful for locations with high concentrations
+	of air pollution, such as industrialized areas in China and India.
+	Additional data points in the JSON objects include pollen, mold
+	and type levels, which can assist people who may need allergy medication.
+	There are many other data points that could be helpful for anyone with
+	certain respiratory issues, so it is indeed very useful.</p>
+</body>
+</html>
